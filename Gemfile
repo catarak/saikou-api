@@ -5,7 +5,9 @@ gem 'rails', '4.2.0.beta4'
 
 gem 'rails-api'
 
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
+gem 'taps'
 
 gem 'arel', '6.0.0.beta2'
 gem 'nokogiri'
