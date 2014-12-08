@@ -31,9 +31,6 @@ class UsBillboardScraper
         Record.find_or_create_by(week_id: week.id, chart_id: @chart.id, song_id: song.id)
 
         current_week = current_week - 1.week
-        if year.number == 2013 
-          still_scraping = false;
-        end
       rescue OpenURI::HTTPError => the_error
         still_scraping = false
       end

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   namespace :api, api_options do
     namespace :v1 do
-      resources :user
       resources :years, only: [], param: :number do
         resources :weeks, only: [], param: :number do
           resources :songs, only: [:index]

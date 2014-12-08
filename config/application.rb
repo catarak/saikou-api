@@ -25,5 +25,7 @@ module SaikouApi
 
     # Load lib files
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.middleware.insert_after ActiveRecord::QueryCache, ActionDispatch::Cookies
   end
 end
