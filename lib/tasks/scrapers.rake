@@ -20,12 +20,22 @@ namespace :scrape do
 
   desc "Scrape Denmark's Hitlisten charts"
   task :dk_hitlisten => :environment do
-    HitlistenScraper.new
+    HitlistenScraper.new.parse
+  end
+
+  desc "Scrape Denmark's Hitlisten charts for most recent week"
+  task :dk_hitlisten_recent => :environment do
+    HitlistenScraper.new.recent_parse
   end
 
   desc "Scrape Germany's Musicline charts"
   task :de_musicline => :environment do
-    MusiclineScraper.new
+    MusiclineScraper.new.parse
+  end
+
+  desc "Scrape Germany's Musicline charts for most recent week"
+  task :de_musicline_recent => :environment do
+    MusiclineScraper.new.recent_parse
   end
 
   desc "Scrape UK's Official charts"

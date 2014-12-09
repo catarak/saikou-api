@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141202151639) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "artists", force: true do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -29,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141202151639) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "charts", ["country_id"], name: "index_charts_on_country_id", using: :btree
+  add_index "charts", ["country_id"], name: "index_charts_on_country_id"
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -45,8 +42,8 @@ ActiveRecord::Schema.define(version: 20141202151639) do
     t.integer  "song_id"
   end
 
-  add_index "records", ["chart_id"], name: "index_records_on_chart_id", using: :btree
-  add_index "records", ["week_id"], name: "index_records_on_week_id", using: :btree
+  add_index "records", ["chart_id"], name: "index_records_on_chart_id"
+  add_index "records", ["week_id"], name: "index_records_on_week_id"
 
   create_table "songs", force: true do |t|
     t.string   "name"
@@ -55,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141202151639) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "songs", ["artist_id"], name: "index_songs_on_artist_id", using: :btree
+  add_index "songs", ["artist_id"], name: "index_songs_on_artist_id"
 
   create_table "weeks", force: true do |t|
     t.integer  "number"
