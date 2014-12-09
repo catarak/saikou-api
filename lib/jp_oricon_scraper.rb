@@ -20,7 +20,6 @@ class JpOriconScraper
     @date = date_of_recent("Monday")
     @end_date = Date.new(2005,10,10)
     while @date > @end_date && no_record_exists?
-      binding.pry
       parse_oricon_page
       @date = @date - 7.days
     end
