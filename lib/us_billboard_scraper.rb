@@ -7,6 +7,16 @@ class UsBillboardScraper
     initialize_models
   end
 
+  def scrape_all
+    @only_recent = false
+    scrape
+  end
+
+  def scrape_recent
+    @only_recent = true
+    scraper
+  end
+
   def scrape
     current_week = date_of_next("Saturday")
     still_scraping = true
@@ -23,12 +33,15 @@ class UsBillboardScraper
         artist = Artist.find_or_create_by(name: artist_name)
         song = Song.find_or_create_by(name: song_name, artist_id: artist.id)
 
-        # if Record.find_by(week_id: week.id, chart_id: @chart.id, song_id: song.id)
-        #   still_scraping = false
-        # else 
-        #   Record.create(week_id: week.id, chart_id: @chart.id, song_id: song.id)
-        # end
-        Record.find_or_create_by(week_id: week.id, chart_id: @chart.id, song_id: song.id)
+        if @only_recent
+          if Record.find_by(week_id: week.id, chart_id: @chart.id, song_id: song.id)
+            still_scraping = false
+          else 
+            Record.create(week_id: week.id, chart_id: @chart.id, song_id: song.id)
+          end
+        else
+          Record.find_or_create_by(week_id: week.id, chart_id: @chart.id, song_id: song.id)
+        end
 
         current_week = current_week - 1.week
       rescue OpenURI::HTTPError => the_error
