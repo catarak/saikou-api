@@ -1,3 +1,7 @@
 == Saikou
 
 This API allows you to access international music chart data in one place. 
+
+API Endpoint: saikou-api.herokuapp.com
+
+As of right now, there are no auth credentials. In the near future, API keys will be added. 
