@@ -16,6 +16,16 @@ class JpOriconScraper
     end
   end
 
+  def recent_scrape
+    @date = date_of_recent("Monday")
+    @end_date = Date.new(2005,10,10)
+    while @date > @end_date && no_record_exists?
+      binding.pry
+      parse_oricon_page
+      @date = @date - 7.days
+    end
+  end
+
   def parse_oricon_page
     begin 
       #Creating date instances
@@ -37,11 +47,12 @@ class JpOriconScraper
     #Creating the year and week
     year = Year.find_or_create_by(number: @db_date.year)
     week = year.weeks.find_or_create_by(number: @db_date.strftime('%W').to_i)
-
+    
     #Creating artist, song, and record
     artist = Artist.find_or_create_by(name: @artist_name)
     song = artist.songs.find_or_create_by(name: @song_name)
     record = Record.create(week_id: week.id, song_id: song.id, chart_id: @chart.id)
+
   end
 
   private
@@ -50,6 +61,15 @@ class JpOriconScraper
     date  = Date.parse(day)
     delta = date > Date.today ? 0 : 7
     date - delta
+  end
+
+  def no_record_exists?
+    week_number = @date.strftime('%W').to_i
+    year_number = @date.year
+    year = Year.find_or_create_by(number: year_number)
+    week = year.weeks.find_or_create_by(number: week_number)
+    record_query = Record.where(chart_id: @chart.id, week_id: week.id)
+    record_query.empty?
   end
 
 end

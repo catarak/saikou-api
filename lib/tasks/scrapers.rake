@@ -18,6 +18,12 @@ namespace :scrape do
     jp_scraper.scrape
   end
 
+  desc "Scrape only recent Japan's Oricon charts"
+  task :jp_oricon_recent => :environment do
+    jp_scraper = JpOriconScraper.new
+    jp_scraper.recent_scrape
+  end
+
   desc "Scrape Denmark's Hitlisten charts"
   task :dk_hitlisten => :environment do
     HitlistenScraper.new.parse
@@ -45,14 +51,16 @@ namespace :scrape do
   end
 
   desc "Scrape only recent UK's Official charts"
-  task :uk_official => :environment do
+  task :uk_official_recent => :environment do
     uk_scraper = UKOfficialChartsScraper.new
     uk_scraper.scrape_recent
   end
 
 
-
   desc "Scrape all countries"
   task :all => [:us_billboard, :jp_oricon, :dk_hitlisten, :de_musicline, :uk_official]
+
+  desc "Scrape recent music only"
+  task :recent => [:us_billboard_recent, :dk_hitlisten_recent, :de_musicline_recent, :uk_official_recent, :jp_oricon_recent]
 
 end
