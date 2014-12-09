@@ -14,7 +14,7 @@ class UsBillboardScraper
 
   def scrape_recent
     @only_recent = true
-    scraper
+    scrape
   end
 
   def scrape
