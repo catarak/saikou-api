@@ -1,6 +1,6 @@
 # Saikou API
 
-This API allows you to access international music chart data in one place. 
+This API allows you to access international music chart data in one place. Check out a demo [here](https://saikou.herokuapp.com/).
 
 API Base URL: https://saikou-api.herokuapp.com/
 
