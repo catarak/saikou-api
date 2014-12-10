@@ -2,7 +2,7 @@
 
 This API allows you to access international music chart data in one place. 
 
-API Base URL: https://saikou-api.herokuapp.com/api/v1/
+API Base URL: https://saikou-api.herokuapp.com/
 
 As of right now, there are no auth credentials. In the near future, API keys will be added. 
 
